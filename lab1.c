@@ -3,13 +3,14 @@
 int main()
 {
    double a, b, c, d, x1, x2;
-   
+   int i;
+   do {
 
-   printf ("Vvedite a:");
+   printf ("Введите a:");
    scanf ("%lf", &a);
-   printf ("Vvedite b:");
+   printf ("Введите b:");
    scanf ("%lf", &b);
-   printf ("Vvedite c:");
+   printf ("Введите c:");
    scanf ("%lf", &c);
    
    d=b*b-4*a*c;
@@ -27,8 +28,10 @@ int main()
        printf ("x1 = %lf \n", x1);
    }
    if (d<0) {
-       printf ("KORNEY NET");
+       printf ("Корней нет");
    }
-   
+   printf ("Продолжить 1 - да, 2 - нет");
+   scanf ("%d", &i);
+   } while (i == 1);
     return 0;
 }
