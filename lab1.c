@@ -4,9 +4,13 @@ int main()
 {
    double a, b, c, d, x1, x2;
    
-   a=5.1;
-   b=1;
-   c=-2.2;
+
+   printf ("Vvedite a:");
+   scanf ("%lf", &a);
+   printf ("Vvedite b:");
+   scanf ("%lf", &b);
+   printf ("Vvedite c:");
+   scanf ("%lf", &c);
    
    d=b*b-4*a*c;
    printf("d = %lf", d);
