@@ -1,24 +1,19 @@
 #include <stdio.h>
+#include <string.h>
 #include <ctype.h>
- 
-int main()
-{ 
-     char masstr[80]="";
-       char *rstr;
-       char *gets (char *s);
-   printf ("Введите строку:\n");
-   rstr = gets (masstr);
-   int i = 0;
-    for ?????????????????
-    {
-        if (masstr[i] == "a")
-            masstr[i] = "A";
-        else if (masstr[i] == "b")
-            masstr[i] = "B";
-        i++;
+
+int main() {
+    char inputString[80]; 
+    printf("Введите строку: ");
+    fgets(inputString, 80, stdin); 
+
+    for (int i = 0; i < strlen(inputString); i++) {
+        if (inputString[i] == 'a' || inputString[i] == 'b') {
+            inputString[i] = toupper(inputString[i]);
+        }
     }
-    
-   printf ("Считана строка:\n%s\n", masstr);
- 
+   
+    printf("Результат: %s", inputString);
+
     return 0;
 }
