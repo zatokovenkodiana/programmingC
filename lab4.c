@@ -9,7 +9,7 @@ int isTriangleValid(float a, float b, float c) {
 }
 
 float calculatePerimeter(float a, float b, float c) {
-    return a + b + c;
+    return a + b + c; 
 }
  
 float calculateArea(float a, float b, float c) {
