@@ -7,7 +7,7 @@ int isTriangleValid(float a, float b, float c) {
     else
         return 0; 
 }
-
+ 
 float calculatePerimeter(float a, float b, float c) {
     return a + b + c; 
 }
