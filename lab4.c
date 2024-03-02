@@ -16,7 +16,7 @@ float calculateArea(float a, float b, float c) {
     float p = (a + b + c) / 2.0;
     return sqrt(p * (p - a) * (p - b) * (p - c));
 }
-
+ 
 int main() {
     float side1, side2, side3;
     printf("Введите длины сторон треугольника: ");
