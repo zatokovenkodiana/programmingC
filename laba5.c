@@ -130,3 +130,109 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+#include <stdio.h>
+#include "matrix.h"
+
+int main() {
+    unsigned int n;
+    printf("Введите размерность n: ");
+    scanf("%d", &n);
+
+    Matrix *mat1 = createMatrix(n);
+    Matrix *mat2 = createMatrix(n);
+
+    printf("Введите элементы матрицы 1[%d, %d]:\n", n, n);
+    for (unsigned int i = 0; i < n; ++i) {
+        for (unsigned int j = 0; j < n; ++j) {
+            scanf("%lf", &mat1->data[i * n + j]);
+        }
+    }
+
+    printf("Введите элементы матрицы 2[%d, %d]:\n", n, n);
+    for (unsigned int i = 0; i < n; ++i) {
+        for (unsigned int j = 0; j < n; ++j) {
+            scanf("%lf", &mat2->data[i * n + j]);
+        }
+    }
+
+    char op;
+    printf("Введите операцию (+, -, *): ");
+    scanf(" %c", &op);
+
+    Matrix *result = matrixOperation(mat1, mat2, op);
+    printMatrix(result);
+
+    freeMatrix(mat1);
+    freeMatrix(mat2);
+    freeMatrix(result);
+
+    return 0;
+}
+
+
+#ifndef MATRIX_H
+#define MATRIX_H
+
+
+typedef struct {
+    unsigned int n;
+    double *data;
+} Matrix;
+
+Matrix* createMatrix(unsigned int n);
+void freeMatrix(Matrix *mat);
+Matrix* matrixOperation(const Matrix *mat1, const Matrix *mat2, char op);
+void printMatrix(const Matrix *mat);
+
+#endif
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "matrix.h"
+
+Matrix* createMatrix(unsigned int n) {
+    Matrix *mat = (Matrix*)malloc(sizeof(Matrix));
+    mat->n = n;
+    mat->data = (double*)malloc(n * n * sizeof(double));
+    return mat;
+}
+
+void freeMatrix(Matrix *mat) {
+    free(mat->data);
+    free(mat);
+}
+
+Matrix* matrixOperation(const Matrix *mat1, const Matrix *mat2, char op) {
+    Matrix *result = createMatrix(mat1->n);
+    for (unsigned int i = 0; i < mat1->n; ++i) {
+        for (unsigned int j = 0; j < mat1->n; ++j) {
+            double value;
+            if (op == '+') {
+                value = mat1->data[i * mat1->n + j] + mat2->data[i * mat2->n + j];
+            } else if (op == '-') {
+                value = mat1->data[i * mat1->n + j] - mat2->data[i * mat2->n + j];
+            } else if (op == '*') {
+                value = mat1->data[i * mat1->n + j] * mat2->data[i * mat2->n + j];
+            }
+            result->data[i * result->n + j] = value;
+        }
+    }
+    return result;
+}
+
+void printMatrix(const Matrix *mat) {
+    printf("Matrix[%d, %d]:\n", mat->n, mat->n);
+    for (unsigned int i = 0; i < mat->n; ++i) {
+        for (unsigned int j = 0; j < mat->n; ++j) {
+            printf("%f ", mat->data[i * mat->n + j]);
+        }
+        printf("\n");
+    }
+}
