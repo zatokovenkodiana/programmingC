@@ -313,10 +313,7 @@ matrix.c
       // Выделение памяти под хранение строк
       m1[i] = (double*)malloc(n * sizeof(double));
       for (j = 0; j < m; j++) // цикл по столбцам
-      {
-         printf("m1[%d][%d] = ", i, j);
-         scanf("%lf", &m1[i][j]);
-      }
+      
     }
     
           // Выделение памяти под указатели на строки
@@ -327,10 +324,7 @@ matrix.c
       // Выделение памяти под хранение строк
       m2[i] = (double*)malloc(n * sizeof(double));
       for (j = 0; j < n; j++) // цикл по столбцам
-      {
-         printf("m2[%d][%d] = ", i, j);
-         scanf("%lf", &m2[i][j]);
-      }
+      
     }
 
         for(int i=0;i<m;i++)
