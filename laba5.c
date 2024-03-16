@@ -236,3 +236,116 @@ void printMatrix(const Matrix *mat) {
         printf("\n");
     }
 }
+---------------------------------------------------------------------------------------
+
+  
+#include <stdio.h>
+
+
+
+
+int main()
+{
+    
+    double **m1,**m2, **result;
+    int n;
+    printf("vvedite razmer matici:");
+    scanf("%d",&n);
+    
+     // Выделение памяти под указатели на строки
+    m1 = (double**)malloc(n * sizeof(double*));
+    // Ввод элементов массива
+    for (i = 0; i < n; i++) // цикл по строкам
+    {
+      // Выделение памяти под хранение строк
+      m1[i] = (double*)malloc(n * sizeof(double));
+      for (j = 0; j < m; j++) // цикл по столбцам
+      {
+         printf("m1[%d][%d] = ", i, j);
+         scanf("%lf", &m1[i][j]);
+      }
+    }
+ 
+    result = matrix_sum(m1,m2,n);
+    
+    printmatrix(m3);
+    
+         // Выделение памяти под указатели на строки
+    m2 = (double**)malloc(n * sizeof(double*));
+    // Ввод элементов массива
+    for (i = 0; i < n; i++) // цикл по строкам
+    {
+      // Выделение памяти под хранение строк
+      m2[i] = (double*)malloc(n * sizeof(double));
+      for (j = 0; j < n; j++) // цикл по столбцам
+      {
+         printf("m2[%d][%d] = ", i, j);
+         scanf("%lf", &m2[i][j]);
+      }
+    }
+    
+    
+    
+    // Очистка памяти
+    for (i = 0; i < n; i++) // цикл по строкам
+      free(m1[i]);  // освобождение памяти под строку
+    free(m1);
+    
+        // Очистка памяти
+    for (i = 0; i < n; i++) // цикл по строкам
+      free(m2[i]);  // освобождение памяти под строку
+    free(m2);
+
+    return 0;
+}
+
+
+matrix.c
+
+  double **matrix_sum(double **m1, double **m2, int n){
+    double **result;
+
+// Выделение памяти под указатели на строки
+    m1 = (double**)malloc(n * sizeof(double*));
+    // Ввод элементов массива
+    for (i = 0; i < n; i++) // цикл по строкам
+    {
+      // Выделение памяти под хранение строк
+      m1[i] = (double*)malloc(n * sizeof(double));
+      for (j = 0; j < m; j++) // цикл по столбцам
+      {
+         printf("m1[%d][%d] = ", i, j);
+         scanf("%lf", &m1[i][j]);
+      }
+    }
+    
+          // Выделение памяти под указатели на строки
+    m2 = (double**)malloc(n * sizeof(double*));
+    // Ввод элементов массива
+    for (i = 0; i < n; i++) // цикл по строкам
+    {
+      // Выделение памяти под хранение строк
+      m2[i] = (double*)malloc(n * sizeof(double));
+      for (j = 0; j < n; j++) // цикл по столбцам
+      {
+         printf("m2[%d][%d] = ", i, j);
+         scanf("%lf", &m2[i][j]);
+      }
+    }
+
+        for(int i=0;i<m;i++)
+          for(int j=0;j<m;j++) {
+            result = m1[n][n] + m2[n][n];
+            
+          }
+    }
+
+    
+    
+    
+    return result;
+} 
+
+void printmatrix(duble **m){
+    
+}
