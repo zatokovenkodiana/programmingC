@@ -135,6 +135,18 @@ matrix.c
 __________________________________________________________________________________________________
 Результать сделать функцией 
 
+  printm(n, m);
+
+вместо 
+   printf("Результат:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%lf ", result[i][j]);
+        }
+        printf("\n");
+    }
+
+
  void printm(int n, double** m1, double **m2) {
     double **result = (double**)malloc(n * sizeof(double*));
     for (int i = 0; i < n; i++) {
