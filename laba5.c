@@ -131,7 +131,15 @@ matrix.c
     return result;
 }
 
+__________________________________________________________________________________________________
+Результать сделать функцией 
 
-
-
+ void printm(int n, double** m1, double **m2) {
+    double **result = (double**)malloc(n * sizeof(double*));
+    for (int i = 0; i < n; i++) {
+    
+}
+         
+         
+         
 
