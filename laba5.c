@@ -52,16 +52,11 @@ int main() {
     }
  
 
-    printf("Результат:\n");
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            printf("%lf ", result[i][j]);
-        }
-        printf("\n");
-    }
+
+    printm(result, n);
+
 
     
-
 
  // Очистка памяти
     for (int i = 0; i < n; i++) {
@@ -78,6 +73,7 @@ int main() {
 
 
 
+
 matrix.h
 #ifndef MATRIX_H
 #define MATRIX_H
@@ -85,6 +81,7 @@ matrix.h
 double **matrix_sum(double **m1, double **m2, int n);
 double **matrix_minus(double **m1, double **m2, int n);
 double **matrix_product(double **m1, double **m2, int n);
+void printm(double** m, int n);
 
 #endif
 
@@ -131,28 +128,13 @@ matrix.c
     return result;
 }
 
-
-__________________________________________________________________________________________________
-Результать сделать функцией 
-
-  printm(n, m);
-
-вместо 
-   printf("Результат:\n");
+    void printm(double** m, int n) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            printf("%lf ", result[i][j]);
+            printf("%lf ", m[i][j]);
         }
         printf("\n");
     }
-
-
- void printm(int n, double** m1, double **m2) {
-    double **result = (double**)malloc(n * sizeof(double*));
-    for (int i = 0; i < n; i++) {
-    
 }
-         
-         
-         
+ 
 
