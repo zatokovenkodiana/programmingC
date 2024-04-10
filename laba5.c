@@ -81,7 +81,7 @@ matrix.h
 double **matrix_sum(double **m1, double **m2, int n);
 double **matrix_minus(double **m1, double **m2, int n);
 double **matrix_product(double **m1, double **m2, int n);
-void printm(double** m, int n);
+void printm(double **m, int n);
 
 #endif
 
@@ -128,7 +128,7 @@ matrix.c
     return result;
 }
 
-    void printm(double** m, int n) {
+    void printm(double **m, int n) {
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
             printf("%lf ", m[i][j]);
