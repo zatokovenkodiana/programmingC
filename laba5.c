@@ -137,7 +137,19 @@ matrix.c
     }
 }
  ____________________________________________________________
- 
-    
-}
+очистка памяти вместо той, которая была
+main.c
+ myfree(m1, n);
+ myfree(m2, n);
+ myfree(result, n);
+
+matrix.h
+void myfree(double **result, int n);
+
+matrix.c
+  void myfree(double **result, int n) {
+    for (int i = 0; i < n; i++) {
+        free(result[i]);
+    }
+    free(result);
 
