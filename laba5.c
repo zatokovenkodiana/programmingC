@@ -152,4 +152,135 @@ matrix.c
         free(result[i]);
     }
     free(result);
+_____________________________________________________________________
+#include <stdio.h>
+#include <stdlib.h>
+#include "matrix.h"
 
+int main()
+{
+    int n;
+    double **m1 = (double**)malloc(n * sizeof(double*));
+    double **m2 = (double**)malloc(n * sizeof(double*));
+    
+    printf("rzmer ");
+    scanf("%d", &n);
+    
+    printf("m1\n ");
+    for (int i = 0; i < n; i++){
+        m1[i] = (double*)malloc(n * sizeof(double));
+        for (int j = 0; j < n; j++){
+            scanf("%lf", &m1[i][j]);
+        }
+    }
+    
+    printf("m2\n ");
+    for (int i = 0; i < n; i++){
+        m2[i] = (double*)malloc(n * sizeof(double));
+        for (int j = 0; j < n; j++){
+            scanf("%lf", &m2[i][j]);
+        }
+    }
+    
+    char operation;
+    printf("operation");
+    scanf(" %c", &operation);
+    
+    double **result;
+    if (operation == '+') {
+        result = matrix_sum(m1, m2, n);
+    } else if (operation == '-') {
+        result = matrix_minus(m1, m2, n);
+    } else if (operation == '*') {
+        result = matrix_product(m1, m2, n);
+    } else {
+        printf("Ошибка!");
+        return 1;
+    }
+ 
+    
+    printm(result, n);
+    
+ myfree(m1, n);
+ myfree(m2, n);
+ myfree(result, n);
+
+    return 0;
+}
+
+
+
+
+
+#ifndef MATRIX_H
+#define MATRIX_H
+
+double **matrix_sum(double **m1, double **m2, int n);
+double **matrix_minus(double **m1, double **m2, int n);
+double **matrix_product(double **m1, double **m2, int n);
+void printm(double **m, int n);
+void myfree(double **result, int n);
+
+#endif
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "matrix.h"
+
+double **matrix_sum(double **m1, double **m2, int n) {
+    double **result  = (double**)malloc(n * sizeof(double*));
+    for (int i = 0; i < n; i++){
+        result[i] = (double*)malloc(n * sizeof(double));
+        for (int j = 0; j < n; j++){
+            result[i][j] = m1[i][j] + m2[i][j];
+        }
+    }
+    return result;
+}
+
+double **matrix_minus(double **m1, double **m2, int n) {
+    double **result  = (double**)malloc(n * sizeof(double*));
+    for (int i = 0; i < n; i++){
+        result[i] = (double*)malloc(n * sizeof(double));
+        for (int j = 0; j < n; j++){
+            result[i][j] = m1[i][j] - m2[i][j];
+        }
+    }
+    return result;
+}
+
+double **matrix_product(double **m1, double **m2, int n) {
+    double **result  = (double**)malloc(n * sizeof(double*));
+    for (int i = 0; i < n; i++){
+        result[i] = (double*)malloc(n * sizeof(double));
+        for (int j = 0; j < n; j++){
+            result[i][j] = 0;
+            for (int k = 0; k < n; k++){
+                result[i][j] += m1[i][k] * m2[k][j];
+                
+            }
+        }
+    }
+    return result;
+}
+
+void printm(double **m, int n){
+    for (int i = 0; i < n; i++){
+        for (int j = 0; j < n; j++){
+            printf("%lf ", m[i][j]);
+    }
+    printf("\n");
+}
+}
+
+
+void myfree(double **result, int n){
+    for (int i = 0; i < n; i++){
+        free(result[i]);
+    }
+    free(result);
+}
