@@ -43,3 +43,32 @@ int main() {
 
     return 0; 
 }
+______________________________________________________________________________________
+
+
+
+#include <stdio.h>
+
+int main(int argc, char *argv[]) {
+    FILE *f1, *f2;
+    char s[80];
+    char s1[80];
+    char s2[80];
+    char s3[80];
+    int y;
+    f1 = fopen("1.txt", "r");
+    f2 = fopen("2.txt", "w");
+    
+    while (fgets(s,80,f1)!=NULL){
+        sscanf(s,"%s %s %s %d", s1,s2,s3,&y);
+        printf("%s %s %s %d \n", s1,s2,s3,y);
+        if (y>1980){
+            fprint(f2,"%s", s);
+        }
+    }
+    
+    fclose(f1);
+    fclose(f2);
+
+    return 0;
+}
