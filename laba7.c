@@ -1,16 +1,21 @@
 Объявить тип-структуру humen, включающую имя человека, фамилию и год рождения. Объявить два массива из четырёх элементов типа humen. 
   Ввести с консоли или из файла элементы одного массива и построить на их основе другой, упорядочив элементы по годам рождения. Вывести результат. 
 
-  struct humen{
+ #include <stdio.h>
+#include <math.h>
+#include <string.h>
+ 
+ struct humen{
     char name[100], sname[100], pol[10];
     int byear, height;
 };
 
 int main(){
+
     int N = 4;
     struct humen a[N], b[N], t;
-    char name[100], sname[100], pol[10];
-    int byear, height;
+    char name[100], sname[100];
+    int byear;
     for(int i = 0; i<N; i++){
         printf("введите имя %d-го человека: ", i+1);
         scanf("%s", name);
@@ -18,15 +23,9 @@ int main(){
         scanf("%s", sname);
         printf("введите год рождения %d-го человека: ", i+1);
         scanf("%d", &byear);
-        printf("введите пол %d-го человека: ", i+1);
-        scanf("%s", pol);
-        printf("введите рост %d-го человека: ", i+1);
-        scanf("%d", &height);
         strcpy(a[i].name, name);
         strcpy(a[i].sname, sname);
-        strcpy(a[i].pol, pol);
         a[i].byear = byear;
-        a[i].height = height;
     }
     
     for(int i = 0; i<N; i++) b[i] = a[i];
@@ -40,7 +39,7 @@ int main(){
         }
     }
     for(int i = 0; i<N; i++){
-        printf("%d %s %s %s %d %d\n", i, b[i].name, b[i].sname, b[i].pol, b[i].byear, b[i].height);
+        printf("%d %s %s %d\n", i, b[i].name, b[i].sname, b[i].byear);
     }
     return 0;
 }
