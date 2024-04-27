@@ -6,8 +6,8 @@
 #include <string.h>
  
  struct humen{
-    char name[100], sname[100], pol[10];
-    int byear, height;
+    char name[100], sname[100];
+    int byear;
 };
 
 int main(){
