@@ -3,37 +3,68 @@
     Для разбора входной строки использовать функцию strok. 
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
 
-float calculate(char *expression) {
-    char *token = strtok(expression, " ");
-    float result = atof(token);
+double unary_op(char op, double operand)
+{
+    if (op == '-')
+    {
+        return -operand;
+    }
+    else
+    {
+        return operand;
+    }
+}
 
-    while ((token = strtok(NULL, " ")) != NULL) {
-        if (strcmp(token, "+") == 0) {
-            token = strtok(NULL, " ");
-            result += atof(token);
-        } else if (strcmp(token, "-") == 0) {
-            token = strtok(NULL, " ");
-            result -= atof(token);
+double calculate(char *expression)
+{
+    double result = 0.0;
+    char *token;
+    char *delimiter = " ";
+    
+    token = strtok(expression, delimiter);
+    
+    if (token != NULL)
+    {
+        result = atof(token);
+    }
+    
+    while ((token = strtok(NULL, delimiter)) != NULL)
+    {
+        char op = token[0];
+        token = strtok(NULL, delimiter);
+        double operand = atof(token);
+        
+        if (op == '+' || op == '-')
+        {
+            result += unary_op(op, operand);
+        }
+        else
+        {
+            printf("Error");
+            return 0.0;
         }
     }
-
     return result;
 }
 
-int main() {
+int main()
+{
     char expression[100];
-    printf("Enter expression: ");
-    fgets(expression, 100, stdin);
-
-    char *pos;
-    if ((pos=strchr(expression, '\n')) != NULL) {
-        *pos = '\0';
+    
+    printf("Введите выражение: ");
+    fgets(expression, sizeof(expression), stdin);
+    
+    if (expression[strlen(expression) - 1] == '\n')
+    {
+        expression[strlen(expression) - 1] = '\0';
     }
-
-    printf("Result: %.2f\n", calculate(expression));
-
+    
+    double result = calculate(expression);
+    
+    printf("Результат: %.2f", result);
+    
     return 0;
 }
