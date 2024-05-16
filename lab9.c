@@ -3,14 +3,12 @@
     Для разбора входной строки использовать функцию strok. 
 
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
-#include <ctype.h>
+#include <string.h>
 
-double calculate(char *expression) {
+float calculate(char *expression) {
     char *token = strtok(expression, " ");
-    double result = atof(token);
-    char *next_token;
+    float result = atof(token);
 
     while ((token = strtok(NULL, " ")) != NULL) {
         if (strcmp(token, "+") == 0) {
@@ -21,17 +19,21 @@ double calculate(char *expression) {
             result -= atof(token);
         }
     }
+
     return result;
 }
 
 int main() {
     char expression[100];
-    printf("Введите выражение: ");
+    printf("Enter expression: ");
     fgets(expression, 100, stdin);
-    expression[strcspn(expression, "\n")] = 0;
 
-    double result = calculate(expression);
-    printf("Результат: %f\n", result);
+    char *pos;
+    if ((pos=strchr(expression, '\n')) != NULL) {
+        *pos = '\0';
+    }
+
+    printf("Result: %.2f\n", calculate(expression));
 
     return 0;
 }
