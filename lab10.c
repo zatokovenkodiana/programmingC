@@ -29,3 +29,43 @@ int main() {
     
     return 0;
 }
+__________________________________________________________________________
+#include <stdio.h>
+
+#define MAX_NUMBER(arr, size) ({ \
+    int max = arr[0]; \
+    for (int i = 1; i < size; i++) { \
+        if (arr[i] > max) { \
+            max = arr[i]; \
+        } \
+    } \
+    max; \
+})
+
+
+#define AVG_NUM(arr, n) ({ \
+   int sum = 0; \
+   for (int i = 0; i < n; i++) { \
+      sum += arr[i]; \
+   } \
+   (float)sum / n; \
+})
+
+int main() {
+    int n;
+    printf("Введите количество чисел: ");
+    scanf("%d", &n);
+    
+    int numbers[n];
+    printf("Введите числа через пробел: ");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &numbers[i]);
+    }
+
+    int maxNumber = MAX_NUMBER(numbers, n);
+    float average = AVG_NUM(arr, n);
+    printf("Максимальное число: %d\n", maxNumber);
+    printf("Среднее арифметическое: %.2f\n", average);
+    return 0;
+}
+
