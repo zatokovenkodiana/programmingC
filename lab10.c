@@ -40,16 +40,16 @@ __________________________________________________________________________
         } \
     } \
     max; \
+}) 
+
+#define AVG_NUMBER(arr, n) ({ \
+int sum = 0; \
+for (int i = 0; i < n; i++) { \
+sum += arr[i]; \
+} \
+(float)sum / n; \
 })
 
-
-#define AVG_NUM(arr, n) ({ \
-   int sum = 0; \
-   for (int i = 0; i < n; i++) { \
-      sum += arr[i]; \
-   } \
-   (float)sum / n; \
-})
 
 int main() {
     int n;
@@ -61,11 +61,11 @@ int main() {
     for (int i = 0; i < n; i++) {
         scanf("%d", &numbers[i]);
     }
-
+    
     int maxNumber = MAX_NUMBER(numbers, n);
-    float average = AVG_NUM(arr, n);
+    float average = AVG_NUMBER(numbers, n);
     printf("Максимальное число: %d\n", maxNumber);
     printf("Среднее арифметическое: %.2f\n", average);
+    
     return 0;
 }
-
