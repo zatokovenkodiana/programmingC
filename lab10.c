@@ -43,11 +43,11 @@ __________________________________________________________________________
 }) 
 
 #define AVG_NUMBER(arr, n) ({ \
-int sum = 0; \
-for (int i = 0; i < n; i++) { \
-sum += arr[i]; \
-} \
-(float)sum / n; \
+    int sum = 0; \
+    for (int i = 0; i < n; i++) { \
+        sum += arr[i]; \
+    } \
+    (float)sum / n; \
 })
 
 
