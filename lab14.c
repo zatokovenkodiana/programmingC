@@ -5,19 +5,33 @@
 #include <stdio.h>
 #include <setjmp.h>
 
-int main(){
-    int a = 1, b = 1, c = 0, n = 0;
-    scanf("%d", &n);
-    if (n < 3){
-        printf("1");
-        return 0;
+jmp_buf buf;
+
+int fib(int n) {
+    if (n <= 0) {
+        longjmp(buf, 1);
     }
-    jmp_buf env = {0};
-    int val = setjmp(env);
-    c = a + b;
-    a = b;
-    b = c;
-    if(val < n - 3) longjmp(env, val + 1);
-    printf("%d", c);
+    if (n == 1 || n == 2) {
+        return 1;
+    } else {
+        return fib(n-1) + fib(n-2);
+    }
+}
+
+int main() {
+    int n;
+    printf("Введите значение n для вычисления суммы чисел Фибоначчи: ");
+    scanf("%d", &n);
+
+    if (setjmp(buf) == 0) {
+        int total = 0;
+        for (int i = 1; i <= n; i++) {
+            total += fib(i);
+        }
+        printf("Сумма чисел Фибоначчи до %d равна: %d\n", n, total);
+    } else {
+        printf("ошибка!\n");
+    }
+
     return 0;
 }
