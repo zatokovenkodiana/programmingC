@@ -143,3 +143,24 @@ int main() {
     
     return 0;	
 }
+
+
+
+
+
+
+
+
+
+
+#include <time.h>
+int main() {
+time_t t1,t0;
+long unsigned int i;
+t0 = time (NULL);//
+начать подсчет времени
+for(i=0; i<1500000000L; i++); // Расчтеп «алгоритма»
+t1 = time (NULL);
+difftime = difftime( t1, t0); //Расчитать время работы
+программы в секундах
+printf("Need time difftime = %f \n",diftime); return 0;
