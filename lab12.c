@@ -201,3 +201,85 @@ int main()
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+// Функция для генерации случайного числа в заданном диапазоне
+int random_number(int min, int max) {
+    return rand() % (max - min + 1) + min;
+}
+
+int main() {
+    srand(time(NULL)); // Инициализация генератора случайных чисел
+
+    int rows, cols;
+
+    // Получение размеров матрицы от пользователя
+    printf("Введите количество строк: ");
+    scanf("%d", &rows);
+    printf("Введите количество столбцов: ");
+    scanf("%d", &cols);
+
+    // Создание массивов для матриц
+    int matrix1[rows][cols], matrix2[rows][cols];
+
+    // Заполнение матриц случайными числами
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            matrix1[i][j] = random_number(1, 100); // Генерация чисел от 1 до 100
+            matrix2[i][j] = random_number(1, 100);
+        }
+    }
+
+    // Открытие файла для записи
+    FILE *file = fopen("input.txt", "w");
+    if (file == NULL) {
+        printf("Ошибка открытия файла!\n");
+        return 1;
+    }
+
+    // Запись матриц в файл
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            fprintf(file, "%d ", matrix1[i][j]);
+        }
+        fprintf(file, "\n");
+    }
+    fprintf(file, "\n"); // Пустая строка между матрицами
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            fprintf(file, "%d ", matrix2[i][j]);
+        }
+        fprintf(file, "\n");
+    }
+
+    // Закрытие файла
+    fclose(file);
+
+    // Очистка массивов (не обязательно, так как программа завершается)
+    // Но для наглядности:
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            matrix1[i][j] = 0;
+            matrix2[i][j] = 0;
+        }
+    }
+
+    printf("Матрицы записаны в файл input.txt\n");
+
+    return 0;
+}
