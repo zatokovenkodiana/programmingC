@@ -115,3 +115,68 @@ int main(int argc, char *argv[]) {
     
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+c
+#include <stdio.h>
+#include <stdlib.h>
+
+void read_matrix_from_file(int rows, int cols, int matrix[rows][cols]) {
+    FILE *f = fopen("input.txt", "r");
+    if (f == NULL) {
+        printf("Ошибка открытия файла");
+        return;
+    }
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (fscanf(f, "%d", &matrix[i][j]) != 1) {
+                printf("Ошибка чтения из файла");
+                return;
+            }
+        }
+    }
+
+    fclose(f);
+}
+
+void find_min_element_and_odd_count(int rows, int cols, int matrix[rows][cols]) {
+    int min_element = matrix[0][0];
+    int odd_count = 0;
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (matrix[i][j] < min_element) {
+                min_element = matrix[i][j];
+            }
+            if (matrix[i][j] % 2 != 0) {
+                odd_count++;
+            }
+        }
+    }
+
+    printf("Минимальный элемент в матрице 1: %d\n", min_element);
+    printf("Количество нечетных чисел в матрице 1: %d\n", odd_count);
+}
+
+int main() {
+    int rows, cols;
+    printf("Введите количество строк и столбцов: ");
+    scanf("%d %d", &rows, &cols);
+
+    int matrix1[rows][cols];
+
+    read_matrix_from_file(rows, cols, matrix1);
+
+    find_min_element_and_odd_count(rows, cols, matrix1);
+
+    return 0;
+}
